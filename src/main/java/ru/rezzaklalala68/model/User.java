@@ -4,6 +4,10 @@ import jakarta.persistence.*;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -13,17 +17,29 @@ public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
     @Column(nullable = false)
+    @NotEmpty(message = "firstName should not be empty")
+    @Pattern(regexp = "^[a-zA-Z]+$", message = "firstName should contain only letters")
+    @Size(min = 2, max = 35, message = "firstName should be between 2 and 35 characters")
     private String firstName;
+
+
     @Column( nullable = false)
+    @NotEmpty(message = "lastName should not be empty")
+    @Pattern(regexp = "^[a-zA-Z]+$", message = "lastName should contain only letters")
+    @Size(min = 2, max = 35, message = "lastName should be between 2 and 35 characters")
     private String lastName;
+
     @Column(nullable = false)
+    @Min(value = 1, message = "Age should be greater than 0")
     private short age;
 
     public User(){
 
     }
-    public User(String firstName, String lastName, short age) {
+    public User(long id, String firstName, String lastName, short age) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
