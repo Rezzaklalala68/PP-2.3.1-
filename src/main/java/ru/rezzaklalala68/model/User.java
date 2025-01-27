@@ -2,6 +2,8 @@ package ru.rezzaklalala68.model;
 
 import jakarta.persistence.*;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Objects;
 

@@ -7,13 +7,16 @@
 <h1>Add User</h1>
 <form action="#" th:action="@{/users/add}" th:object="${user}" method="post">
     <label for="firstName">First Name:</label>
-    <input type="text" id="firstName" th:field="*{firstName}" required><br>
+    <input type="text" id="firstName" th:field="*{firstName}" required>
+    <br>
 
     <label for="lastName">Last Name:</label>
-    <input type="text" id="lastName" th:field="*{lastName}" required><br>
+    <input type="text" id="lastName" th:field="*{lastName}" required>
+    <br>
 
     <label for="age">Age:</label>
-    <input type="number" id="age" th:field="*{age}" required><br>
+    <input type="number" id="age" th:field="*{age}" required>
+    <br>
 
     <button type="submit">Save</button>
     <a href="/users/">Cancel</a>

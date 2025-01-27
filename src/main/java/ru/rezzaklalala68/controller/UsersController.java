@@ -23,35 +23,22 @@ public class UsersController {
     }
     @GetMapping("/")
     public String allUsers(Model model) {
-        List<User> users = userService.getUsers();
-        model.addAttribute("users", users);
-        return "user/userList";
+        model.addAttribute("users", userService.getUsers());
+        model.addAttribute("user", new User());
+        return "users";
     }
-    @GetMapping("/add")
-    public String showAddUserForm(User user) {
-        return "user/addUser";
-    }
+
     @PostMapping("/add")
-    @ResponseBody
     public String addUser( @ModelAttribute("user") @Valid User user,
                            BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "user/addUser";
+            return "/add";
         }
         userService.add(user);
         return "redirect:/users";
     }
-    @GetMapping("/edit/{id}")
-    public String showEditUserForm(@PathVariable Long id, Model model) {
-        Optional<User> user = userService.findUserById(id);
-        if (user.isPresent()) {
-            model.addAttribute("user", user.get());
-            return "redirect:/users";
-        }
-        else {return "editUser";}
 
-    }
-    @PostMapping("/edit/{id}")
+    @PostMapping("/update")
     public String updateUser(@ModelAttribute("user") @Valid User user,
                              BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
@@ -60,23 +47,14 @@ public class UsersController {
         userService.update(user);
         return "redirect:/users";
     }
-    @GetMapping("/delete/{id}")
-    public String deleteUser(@RequestParam("id") Long id, Model model) {
-        Optional<User> userById = userService.findUserById(id);
-        if(userById.isPresent()) {
-            model.addAttribute("user", userById.get());
-            return "user/deleteUser";
-        }
-        else {
-            return "redirect:/users";
-        }
-    }
-    @PostMapping("/delete/{id}")
+
+    @PostMapping("/delete")
     public String deleteUser(@ModelAttribute("user") @Valid User user,
                              BindingResult bindingResult) {
          if(bindingResult.hasErrors()) {
              return "user/deleteUser";
          }
+         userService.delete(user);
 
         return "redirect:/users";
     }
