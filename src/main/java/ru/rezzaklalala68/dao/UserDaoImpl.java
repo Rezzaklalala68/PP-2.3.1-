@@ -2,11 +2,14 @@ package ru.rezzaklalala68.dao;
 
 import jakarta.persistence.EntityManager;
 
+import jakarta.persistence.PersistenceContext;
+
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 import ru.rezzaklalala68.model.User;
 
-import javax.persistence.PersistenceContext;
-import javax.transaction.Transactional;
+
+;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;

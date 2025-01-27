@@ -1,6 +1,7 @@
 package ru.rezzaklalala68.config;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -13,7 +14,7 @@ import java.util.Properties;
 public class JpaConfig {
 
     private final DataSource dataSource;
-
+@Autowired
     public JpaConfig(DataSource dataSource) {
         this.dataSource = dataSource;
     }
