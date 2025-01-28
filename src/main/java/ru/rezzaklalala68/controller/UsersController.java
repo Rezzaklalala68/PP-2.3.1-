@@ -25,9 +25,14 @@ public class UsersController {
     public String allUsers(Model model) {
         model.addAttribute("users", userService.getUsers());
         model.addAttribute("user", new User());
-        return "users";
+        return "/users";
     }
 
+    @GetMapping("/add")
+    public String showAddUser ( Model model) {
+        model.addAttribute("user", new User());
+        return "user/addUser";
+    }
     @PostMapping("/add")
     public String addUser( @ModelAttribute("user") @Valid User user,
                            BindingResult bindingResult) {
@@ -37,7 +42,16 @@ public class UsersController {
         userService.add(user);
         return "redirect:/users";
     }
-
+    @GetMapping("/edit")
+    public String showEditUser (@RequestParam("id") long id, Model model) {
+        Optional<User> userById = userService.findUserById(id);
+        if (userById.isPresent()) {
+            model.addAttribute("user", userById.get());
+            return "user/editUser";
+        } else {
+            return "redirect:/users";
+        }
+    }
     @PostMapping("/update")
     public String updateUser(@ModelAttribute("user") @Valid User user,
                              BindingResult bindingResult) {
@@ -46,6 +60,16 @@ public class UsersController {
         }
         userService.update(user);
         return "redirect:/users";
+    }
+    @GetMapping("/delete")
+    public String showDeleteUser(@RequestParam("id") long id, Model model) {
+        Optional<User> userById = userService.findUserById(id);
+        if (userById.isPresent()) {
+            model.addAttribute("user", userById.get());
+            return "user/deleteUser";
+        } else {
+            return "redirect:/users";
+        }
     }
 
     @PostMapping("/delete")
