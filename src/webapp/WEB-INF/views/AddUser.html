@@ -2,24 +2,28 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Add User</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/styles.css}">
 </head>
 <body>
 <h1>Add User</h1>
-<form action="#" th:action="@{/users/addUser}" th:object="${user}" method="POST">
-    <label for="firstName">First Name:</label>
-    <input type="text" id="firstName" th:field="*{firstName}" required>
-    <br>
-
-    <label for="lastName">Last Name:</label>
-    <input type="text" id="lastName" th:field="*{lastName}" required>
-    <br>
-
-    <label for="age">Age:</label>
-    <input type="number" id="age" th:field="*{age}" required>
-    <br>
-
-    <button type="submit">Save</button>
-    <a href="/users/">Cancel</a>
+<form th:action="@{/users/AddUser}" th:object="${user}" method="post">
+    <div>
+        <label for="firstName">FirstName:</label>
+        <input type="text" id="firstName" th:field="*{firstName}" required />
+        <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></span>
+    </div>
+    <div>
+        <label for="lastName">LastName:</label>
+        <input type="text" id="lastName" th:field="*{lastName}" required />
+        <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></span>
+    </div>
+    <div>
+        <label for="age">Age:</label>
+        <input type="number" id="age" th:field="*{age}" required />
+        <span th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></span>
+    </div>
+    <button type="submit">Add User</button>
 </form>
+<a href="/users">Back to User List</a>
 </body>
 </html>

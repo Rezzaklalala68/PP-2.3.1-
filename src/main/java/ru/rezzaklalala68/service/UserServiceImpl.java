@@ -20,7 +20,7 @@ public class UserServiceImpl implements UserService {
     public UserServiceImpl(UserDao userDao) {
         this.userDao = userDao;
     }
-
+    @Override
     @Transactional(readOnly = true)
     public List<User> getUsers() {return userDao.getUsers();
     }
@@ -29,6 +29,8 @@ public class UserServiceImpl implements UserService {
     public void add(User user) {
         userDao.add(user);
     }
+    @Override
+    @Transactional(readOnly = true)
     public Optional<User> findUserById(Long id){return userDao.findUserById(id);}
     @Transactional
     @Override

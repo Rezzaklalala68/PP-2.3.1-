@@ -49,9 +49,9 @@ public class DataSourceConfig {
         em.setPackagesToScan("ru.rezzaklalala68.model");
         em.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
         Properties properties = new Properties();
-        properties.put("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
-        properties.put("hibernate.hbm2ddl.auto", "update");
-        properties.put("hibernate.show_sql", true);
+        properties.put("hibernate.dialect", env.getProperty("hibernate.dialect"));
+        properties.put("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
+        properties.put("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
         em.setJpaProperties(properties);
         return em;
     }

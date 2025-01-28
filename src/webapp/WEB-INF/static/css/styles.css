@@ -1,0 +1,56 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+h1 {
+    color: #333;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+a {
+    text-decoration: none;
+    color: #007BFF;
+    margin-right: 10px;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+form div {
+    margin-bottom: 10px;
+}
+
+form label {
+    display: inline-block;
+    width: 100px;
+}
+
+form input {
+    padding: 5px;
+    width: 200px;
+}
+
+form span {
+    color: red;
+    font-size: 0.9em;
+}

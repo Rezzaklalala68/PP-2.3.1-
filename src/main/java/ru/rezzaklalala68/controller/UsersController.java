@@ -18,7 +18,7 @@ public class UsersController {
     public UsersController( UserService userService ) {
         this.userService = userService;
     }
-    @GetMapping("/UserList")
+    @GetMapping
     public String allUsers(Model model) {
         model.addAttribute("users", userService.getUsers());
 
@@ -53,7 +53,7 @@ public class UsersController {
     public String updateUser(@ModelAttribute("user") @Valid User user,
                              BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "editUser";
+            return "EditUser";
         }
         userService.update(user);
         return "redirect:/users";

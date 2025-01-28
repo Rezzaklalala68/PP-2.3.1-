@@ -1,28 +1,30 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns="http://www.w3.org/1999/html">
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Edit user</title>
+    <title>Edit User</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/styles.css}">
 </head>
 <body>
+<h1>Edit User</h1>
+<form th:action="@{/users/EditUser}" th:object="${user}" method="post">
+    <input type="hidden" th:field="*{id}" />
+    <div>
+        <label for="firstName">Firstname:</label>
+        <input type="text" id="firstName" th:field="*{firstName}" required />
+        <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></span>
+    </div>
+    <div>
+        <label for="lastName">Lastname:</label>
+        <input type="text" id="lastName" th:field="*{lastName}" required />
+        <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></span>
+    </div>
+    <div>
+        <label for="age">Age:</label>
+        <input type="number" id="age" th:field="*{age}" required />
+        <span th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></span>
+    </div>
 
-<h1 align="center">Edit User</h1>
-<form align="center" action="/users/edit" th:object="${user}" method="POST">
-    <input th:field="*{id}"  type="hidden"/>
-    <br>
-    <label for="firstName">firstName</label>
-    <input type="text" id="firstName" th:field="*{firstName}" />
-    <div style="color: #d42929" th:if="${#fields.hasErrors('name')}" th:errors="*{firstName}">Name error</div>
-    <br>
-    <label for="lastName">Lastname</label>
-    <input type="text" id="lastName" th:field="*{lastName}"/>
-    <div style="color: red" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Lastname error</div>
-    <br>
-    <label for="age">Age</label>
-    <input type="text" id="age" th:field="*{age}" th:value="*{age}" required>
-    <div style="color: red" th:if="${#fields.hasErrors('age')}" th:errors="*{age}">Age error</div>
-    <br>
-    <input type="submit" value="Update User"/>
+    <button type="submit"> "Update User"</button>
 </form>
 <a href="/users">Back to User List</a>
 </body>
