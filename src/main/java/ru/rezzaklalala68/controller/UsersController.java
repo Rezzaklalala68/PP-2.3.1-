@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 import ru.rezzaklalala68.model.User;
 import ru.rezzaklalala68.service.UserService;
 import javax.validation.Valid;
-import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -22,20 +21,20 @@ public class UsersController {
     @GetMapping("/")
     public String allUsers(Model model) {
         model.addAttribute("users", userService.getUsers());
-        model.addAttribute("user", new User());
-        return "/";
+
+        return "UserList";
     }
 
     @GetMapping("/add")
     public String showAddUser ( Model model) {
         model.addAttribute("user", new User());
-        return "user/addUser";
+        return "/AddUser";
     }
     @PostMapping("/add")
     public String addUser( @ModelAttribute("user") @Valid User user,
                            BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "/add";
+            return "/AddUser";
         }
         userService.add(user);
         return "redirect:/users";
@@ -45,16 +44,16 @@ public class UsersController {
         Optional<User> userById = userService.findUserById(id);
         if (userById.isPresent()) {
             model.addAttribute("user", userById.get());
-            return "user/editUser";
+            return "/editUser";
         } else {
             return "redirect:/users";
         }
     }
-    @PostMapping("/update")
+    @PostMapping("/edit")
     public String updateUser(@ModelAttribute("user") @Valid User user,
                              BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "user/editUser";
+            return "/editUser";
         }
         userService.update(user);
         return "redirect:/users";
@@ -64,7 +63,7 @@ public class UsersController {
         Optional<User> userById = userService.findUserById(id);
         if (userById.isPresent()) {
             model.addAttribute("user", userById.get());
-            return "user/deleteUser";
+            return "DeleteUser";
         } else {
             return "redirect:/users";
         }
@@ -74,7 +73,7 @@ public class UsersController {
     public String deleteUser(@ModelAttribute("user") @Valid User user,
                              BindingResult bindingResult) {
          if(bindingResult.hasErrors()) {
-             return "user/deleteUser";
+             return "DeleteUser";
          }
          userService.delete(user);
 

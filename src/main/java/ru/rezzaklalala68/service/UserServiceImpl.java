@@ -7,8 +7,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.rezzaklalala68.dao.UserDao;
 import ru.rezzaklalala68.model.User;
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
