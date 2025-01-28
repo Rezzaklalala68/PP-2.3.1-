@@ -14,12 +14,12 @@
     <input type="text" th:field="*{firstName}" />
     <div style="color: #d42929" th:if="${#fields.hasErrors('name')}" th:errors="*{firstName}">Name error</div>
     <br>
-    <label for="lastName">Surname</label>
-    <input type="text" th:field="*{lastName}" />
+    <label for="lastName">Lastname</label>
+    <input type="text" th:field="*{lastName}"/>
     <div style="color: red" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Lastname error</div>
     <br>
     <label for="age">Age</label>
-    <input type="text" id="age" th:field="*{age}" th:value="${user.age}" required>
+    <input type="text" id="age" th:field="*{age}" th:value="*{age}" required>
     <div style="color: red" th:if="${#fields.hasErrors('age')}" th:errors="*{age}">Age error</div>
     <br>
     <input type="submit" value="Update User"/>
