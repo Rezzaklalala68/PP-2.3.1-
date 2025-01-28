@@ -18,19 +18,19 @@ public class UsersController {
     public UsersController( UserService userService ) {
         this.userService = userService;
     }
-    @GetMapping("/")
+    @GetMapping("/UserList")
     public String allUsers(Model model) {
         model.addAttribute("users", userService.getUsers());
 
         return "UserList";
     }
 
-    @GetMapping("/add")
+    @GetMapping("/AddUser")
     public String showAddUser ( Model model) {
         model.addAttribute("user", new User());
         return "/AddUser";
     }
-    @PostMapping("/add")
+    @PostMapping("/AddUser")
     public String addUser( @ModelAttribute("user") @Valid User user,
                            BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
@@ -39,17 +39,17 @@ public class UsersController {
         userService.add(user);
         return "redirect:/users";
     }
-    @GetMapping("/edit")
+    @GetMapping("/EditUser")
     public String showEditUser (@RequestParam("id") long id, Model model) {
         Optional<User> userById = userService.findUserById(id);
         if (userById.isPresent()) {
             model.addAttribute("user", userById.get());
-            return "/editUser";
+            return "/EditUser";
         } else {
             return "redirect:/users";
         }
     }
-    @PostMapping("/edit")
+    @PostMapping("/EditUser")
     public String updateUser(@ModelAttribute("user") @Valid User user,
                              BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
@@ -58,7 +58,7 @@ public class UsersController {
         userService.update(user);
         return "redirect:/users";
     }
-    @GetMapping("/delete")
+    @GetMapping("/DeleteUser")
     public String showDeleteUser(@RequestParam("id") long id, Model model) {
         Optional<User> userById = userService.findUserById(id);
         if (userById.isPresent()) {
@@ -69,7 +69,7 @@ public class UsersController {
         }
     }
 
-    @PostMapping("/delete")
+    @PostMapping("/DeleteUser")
     public String deleteUser(@ModelAttribute("user") @Valid User user,
                              BindingResult bindingResult) {
          if(bindingResult.hasErrors()) {
