@@ -10,7 +10,7 @@ import java.util.Objects;
 public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Long id;
 
     @Column(name = "firstName",nullable = false)
     private String firstName;
@@ -25,7 +25,7 @@ public class User implements Serializable {
     public User(){
 
     }
-    public User(long id, String firstName, String lastName, int age) {
+    public User(Long id, String firstName, String lastName, int age) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;

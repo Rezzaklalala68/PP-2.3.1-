@@ -41,9 +41,9 @@ public class UsersController {
     }
     @GetMapping("/EditUser")
     public String showEditUser (@RequestParam("id") long id, Model model) {
-        Optional<User> userById = userService.findUserById(id);
-        if (userById.isPresent()) {
-            model.addAttribute("user", userById.get());
+        User userById = userService.findUserById(id);
+        if (userById != null) {
+            model.addAttribute("user", userById);
             return "EditUser";
         } else {
             return "redirect:/users";
@@ -60,9 +60,9 @@ public class UsersController {
     }
     @GetMapping("/DeleteUser")
     public String showDeleteUser(@RequestParam("id") long id, Model model) {
-        Optional<User> userById = userService.findUserById(id);
-        if (userById.isPresent()) {
-            model.addAttribute("user", userById.get());
+        User userById = userService.findUserById(id);
+        if (userById != null) {
+            model.addAttribute("user", userById);
             return "DeleteUser";
         } else {
             return "redirect:/users";

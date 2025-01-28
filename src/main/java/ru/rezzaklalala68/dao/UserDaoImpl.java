@@ -14,14 +14,13 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public List<User> getUsers() {
-        return entityManager.createQuery("select u from User u", User.class).getResultList();
+        return entityManager.createQuery("from User ", User.class).getResultList();
     }
     public void add(User user) {
         entityManager.persist(user);
     }
-    public Optional<User> findUserById(Long id) {
-        User user = entityManager.find(User.class, id);
-        return Optional.ofNullable(user);
+    public User findUserById(Long id) {
+        return entityManager.find(User.class, id);
     }
     public void update(User user) {
         User userToUpdate = entityManager.find(User.class, user.getId());
@@ -36,7 +35,7 @@ public class UserDaoImpl implements UserDao {
     }
     public void delete(User user) {
         if (user != null) {
-            entityManager.remove(entityManager.contains(user) ? user : entityManager.merge(user));
+            entityManager.remove(user);
         }
 
     }
