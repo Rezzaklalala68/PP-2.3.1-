@@ -28,13 +28,13 @@ public class UsersController {
     @GetMapping("/AddUser")
     public String showAddUser ( Model model) {
         model.addAttribute("user", new User());
-        return "/AddUser";
+        return "AddUser";
     }
     @PostMapping("/AddUser")
     public String addUser( @ModelAttribute("user") @Valid User user,
                            BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "/AddUser";
+            return "AddUser";
         }
         userService.add(user);
         return "redirect:/users";
@@ -44,7 +44,7 @@ public class UsersController {
         Optional<User> userById = userService.findUserById(id);
         if (userById.isPresent()) {
             model.addAttribute("user", userById.get());
-            return "/EditUser";
+            return "EditUser";
         } else {
             return "redirect:/users";
         }
@@ -53,7 +53,7 @@ public class UsersController {
     public String updateUser(@ModelAttribute("user") @Valid User user,
                              BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "/editUser";
+            return "editUser";
         }
         userService.update(user);
         return "redirect:/users";
