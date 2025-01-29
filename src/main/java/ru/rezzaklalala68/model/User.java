@@ -1,7 +1,6 @@
 package ru.rezzaklalala68.model;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -9,7 +8,7 @@ import java.util.Objects;
 @Table(name = "users")
 public class User implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY  )
     private Long id;
 
     @Column(name = "firstName",nullable = false)
@@ -30,6 +29,10 @@ public class User implements Serializable {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Long getId() {return id;}
