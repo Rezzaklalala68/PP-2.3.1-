@@ -7,9 +7,9 @@
 <body>
 <h1>Delete User</h1>
 <p>Are you sure you want to delete user <span th:text="${user.lastName}"></span>?</p>
-<form th:action="@{/users/DeleteUser}" th:object="${user}" method="post">
+<form th:action="@{/users/delete-user}" th:object="${user}" method="post">
   <input type="hidden" th:field="*{id}" />
-  <button type="submit" class="delete-btn">Confirm Delete</button>
+  <button type="submit" >Confirm Delete</button>
 </form>
 <a href="/users">Cancel</a>
 </body>
